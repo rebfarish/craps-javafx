@@ -31,4 +31,26 @@ void testPointPoint(){
       }
     }
 }
+
+@Test
+  void testPointLoss(){
+  for (int point : new int[] {4, 5, 6, 8, 9, 10}) {
+    for (int roll = 2; roll <= 12; roll++) {
+      if (roll == 7) {
+        assertSame(State.LOSS, State.POINT.roll(roll, point));
+      }
+    }
+  }
+}
+
+@Test
+  void testPointWin(){
+    for (int point : new int[] {4, 5, 6, 8, 9, 10}) {
+      for (int roll = 2; roll <= 12; roll++) {
+        if (roll == point) {
+          assertSame(State.WIN, State.POINT.roll(roll, point));
+        }
+      }
+    }
+}
 }

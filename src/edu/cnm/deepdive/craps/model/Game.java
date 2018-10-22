@@ -5,6 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * This is a simulator for a game of craps.
+ */
 public class Game {
 
   private final Object lock = new Object();
@@ -16,6 +19,10 @@ public class Game {
   private int wins;
   private int losses;
 
+  /**
+   * Starts game with 0 wins or losses
+   *
+   */
   public Game(Random rng) {
     this.rng = rng;
     rolls = new LinkedList<>();
@@ -23,6 +30,9 @@ public class Game {
     losses = 0;
   }
 
+  /**
+   * resets game to come out state
+   */
   public void reset() {
     state = State.COME_OUT;
     point = 0;
@@ -48,6 +58,11 @@ public class Game {
     return state;
   }
 
+  /**
+   *  In the point state, this calls the roll method.
+   *  If the point is rolled then the win tally will increment,
+   *  otherwise the losses tally will increment.
+   */
   public State play() {
     reset();
     while (state != State.WIN && state != State.LOSS) {
@@ -61,6 +76,10 @@ public class Game {
     return state;
   }
 
+  /**
+   *
+   * @return state
+   */
   public State getState() {
     return state;
   }
@@ -71,14 +90,25 @@ public class Game {
     }
   }
 
+  /**
+   *
+   * @return wins
+   */
   public int getWins() {
     return wins;
   }
 
+  /**
+   *
+   * @return losses
+   */
   public int getLosses() {
     return losses;
   }
 
+  /**
+   * Creates an array of two dice with random values
+   */
   public static class Roll {
 
     private final int[] dice;
@@ -89,10 +119,18 @@ public class Game {
       this.state = state;
     }
 
+    /**
+     *
+     * @return copy of array of dice length 2
+     */
     public int[] getDice() {
       return Arrays.copyOf(dice, 2);
     }
 
+    /**
+     *
+     * @return state
+     */
     public State getState() {
       return state;
     }
